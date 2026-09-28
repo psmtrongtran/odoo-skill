@@ -52,9 +52,38 @@
           "Demo data no longer loaded by default (since 18.3)"
         ]
       }
+    },
+    "20.0": {
+      "python_version": "3.12",
+      "postgresql_version": "16",
+      "supported": true,
+      "lts": false,
+      "eol_date": null,
+      "features": {
+        "owl_version": "2.0",
+        "web_framework": "OWL 2.0",
+        "orm_changes": [
+          "Mail tracking values removed; tracking message generated on the fly (burndown charts, stage duration updated via new framework)"
+        ],
+        "platform_changes": [
+          "Minimum Python raised from 3.10 to 3.12",
+          "Minimum PostgreSQL raised from 13 to 16",
+          "pgvector extension required for Odoo AI features (PostgreSQL 15+)",
+          "Font Awesome icons replaced by Material Symbols",
+          "Push notifications moved from Firebase to in-house Odoo push tools"
+        ],
+        "ai_features": [
+          "Agentic automation: automate processes in plain language, agents update themselves",
+          "Agents summoned by automated/scheduled actions; automation chats show handling + error feedback",
+          "AI agents create/update records, generate images, filter by time period, ask file questions",
+          "MCP (Model Context Protocol) database connection for external AI tools with access rights intact",
+          "AI features require IAP credits; automatic AI model selection; default prompts with context",
+          "Website: AI page/snippet generation, AI SEO improvements, structured data by default"
+        ]
+      }
     }
   },
-  "default_version": "19.0",
+  "default_version": "20.0",
   "development_settings": {
     "auto_reload": true,
     "dev_mode": true,
@@ -72,7 +101,7 @@
     },
     "docker": {
       "type": "docker",
-      "image": "odoo:19.0",
+      "image": "odoo:20.0",
       "compose_file": "docker-compose.yml",
       "ports": {
         "odoo": "8069:8069",
@@ -109,7 +138,7 @@
     }
   },
   "python_standards": {
-    "version": "3.10+",
+    "version": "3.12+",
     "style_guide": "PEP 8",
     "max_line_length": 100,
     "import_order": [
@@ -120,7 +149,7 @@
     ]
   },
   "postgresql_standards": {
-    "version": "13+",
+    "version": "16+",
     "extensions": ["unaccent", "pg_trgm"],
     "optimizations": {
       "indexes": true,

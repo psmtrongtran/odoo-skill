@@ -54,9 +54,9 @@ Create a comprehensive Odoo feature specification using odoo-requirements-templa
   - Tree views with appropriate filters and search
   - Kanban views for visual workflow management
   - Dashboard and reporting integration
-- **Frontend Components (Odoo 19.0)**:
+- **Frontend Components (Odoo 20.0)**:
   - OWL 2.0 component structure
-  - Standard widgets confirmed against the [View Architectures reference](https://www.odoo.com/documentation/19.0/developer/reference/user_interface/view_architectures.html) (e.g. `html`, `many2many_tags`, `statusbar`) — never invent widget names
+  - Standard widgets confirmed against the [View Architectures reference](https://www.odoo.com/documentation/20.0/developer/reference/user_interface/view_architectures.html) (e.g. `html`, `many2many_tags`, `statusbar`) — never invent widget names
   - Mobile-responsive form designs
   - Enhanced asset bundle configuration
 - **Security Framework**:

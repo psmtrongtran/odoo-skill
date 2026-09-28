@@ -1,11 +1,11 @@
 # Odoo Skill for Claude Code
 
-A comprehensive development skill for [Claude Code](https://claude.ai/code) that provides Odoo 19.0 support, including module development, bug fixing workflows, and full development lifecycle capabilities.
+A comprehensive development skill for [Claude Code](https://claude.ai/code) that provides Odoo 20.0 support, including module development, bug fixing workflows, and full development lifecycle capabilities.
 
 ## Features
 
 - **13 Slash Commands** for Odoo-specific workflows
-- **Odoo 19.0 Support** including OWL 2.0, Python 3.10+, PostgreSQL 13+
+- **Odoo 20.0 Support** including OWL 2.0, Python 3.12+, PostgreSQL 16+
 - **Module Scaffolding Script** for quick module creation
 - **Reference Documentation** built-in as a Claude skill
 - **Specification Templates** for requirements, design, and implementation tasks
@@ -18,9 +18,10 @@ A comprehensive development skill for [Claude Code](https://claude.ai/code) that
 | 14.0 - 16.0 | 3.8 - 3.10 | 12 - 14 | Maintenance |
 | 17.0 | 3.10 | 14 | LTS until 2034-05 |
 | 18.0 | 3.10 | 12 | Stable |
-| **19.0** | **3.10+** | **13+** | **LTS (Primary)** |
+| 19.0 | 3.10+ | 13+ | LTS until 2036-05 |
+| **20.0** | **3.12+** | **16+** | **Latest (Primary)** |
 
-Verified against the [Odoo 19.0 install-from-source docs](https://www.odoo.com/documentation/19.0/administration/on_premise/source.html).
+Verified against the [Odoo 20.0 install-from-source docs](https://www.odoo.com/documentation/20.0/administration/on_premise/source.html).
 
 ## Installation
 
@@ -113,7 +114,7 @@ Creates specification documents in `[module-path]/.spec/features/[feature-name]/
 
 Creates systematic bug fix workflow with analysis, reproduction steps, and testing strategy.
 
-## Odoo 19.0 Key Features
+## Odoo 20.0 Key Features
 
 ### OWL 2.0 Components
 
@@ -151,7 +152,7 @@ export class MyComponent extends Component {
 odoo-skill/
 ├── .claude/
 │   ├── commands/           # Slash command definitions
-│   ├── skills/odoo/        # Odoo 19.0 reference skill
+│   ├── skills/odoo/        # Odoo 20.0 reference skill
 │   └── settings.local.json # Permissions configuration
 ├── .odoo-dev/
 │   ├── config.json         # Version compatibility config
@@ -165,7 +166,7 @@ odoo-skill/
 
 - Claude Code (claude.ai/code)
 - Bash (for scaffolding script)
-- Odoo 14.0-19.0 (for module development)
+- Odoo 14.0-20.0 (for module development)
 
 ## Contributing
 
@@ -181,6 +182,6 @@ Created for the Odoo development community.
 
 ## See Also
 
-- [Odoo Documentation](https://www.odoo.com/documentation/19.0/)
+- [Odoo Documentation](https://www.odoo.com/documentation/20.0/)
 - [Claude Code Documentation](https://claude.ai/code)
 - [OWL Documentation](https://github.com/odoo/owl)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Odoo Module Scaffolding Script
-# Creates a new Odoo module with proper structure for Odoo 19.0
+# Creates a new Odoo module with proper structure for Odoo 20.0
 
 set -e
 
@@ -12,11 +12,11 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Default values
-ODOO_VERSION="19.0"
+ODOO_VERSION="20.0"
 AUTHOR="Your Company"
 LICENSE="LGPL-3"
 CATEGORY="Tools"
-PYTHON_VERSION="3.10"
+PYTHON_VERSION="3.12"
 
 # Function to print colored output
 print_info() {

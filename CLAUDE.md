@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Purpose
 
-This is an Odoo 19.0 development skill for Claude Code - a collection of slash commands, templates, and reference documentation for developing Odoo modules (versions 14.0-19.0, with 19.0 as primary target).
+This is an Odoo 20.0 development skill for Claude Code - a collection of slash commands, templates, and reference documentation for developing Odoo modules (versions 14.0-20.0, with 20.0 as primary target).
 
 ## Architecture
 
@@ -13,7 +13,7 @@ This is an Odoo 19.0 development skill for Claude Code - a collection of slash c
 ```
 .claude/
 ├── commands/          # Slash command definitions for Claude Code
-├── skills/odoo/       # Odoo 19.0 reference skill (auto-loaded)
+├── skills/odoo/       # Odoo 20.0 reference skill (auto-loaded)
 └── settings.local.json # Permission configuration
 
 .odoo-dev/
@@ -60,7 +60,7 @@ scripts/
 
 Interactive script that creates:
 - Complete module directory structure
-- `__manifest__.py` with Odoo 19.0 format
+- `__manifest__.py` with Odoo 20.0 format
 - Base model with mail.thread inheritance
 - Security files (access rights, record rules)
 - Demo data and unit tests
@@ -74,11 +74,12 @@ The `.odoo-dev/config.json` defines supported versions:
 |---------|--------------|-------------------|-----|
 | 17.0 | 3.10 | 14 | Yes (until 2034-05) |
 | 18.0 | 3.10 | 12 | No |
-| 19.0 | 3.10+ | 13+ | Yes (primary target) |
+| 19.0 | 3.10+ | 13+ | Yes (LTS until 2036-05) |
+| 20.0 | 3.12+ | 16+ | No (primary target, Sep 2026) |
 
-Verified against the [Odoo 19.0 install-from-source docs](https://www.odoo.com/documentation/19.0/administration/on_premise/source.html); these are official minimums, not what's typically deployed.
+Verified against the [Odoo 20.0 install-from-source docs](https://www.odoo.com/documentation/20.0/administration/on_premise/source.html); these are official minimums, not what's typically deployed.
 
-**Odoo 19.0 Key Changes (per the [ORM changelog](https://www.odoo.com/documentation/19.0/developer/reference/backend/orm/changelog.html)):**
+**Odoo 20.0 Key Changes (per the [ORM changelog](https://www.odoo.com/documentation/20.0/developer/reference/backend/orm/changelog.html)):**
 - Frontend: OWL 2.0 (complete rewrite from OWL 1.x)
 - `models.Constraint`/`models.Index` model attributes supersede `_sql_constraints` (since 18.1)
 - `read_group` deprecated in favor of `_read_group`/`formatted_read_group` (since 18.2)
@@ -87,6 +88,11 @@ Verified against the [Odoo 19.0 install-from-source docs](https://www.odoo.com/d
 - Demo data no longer loaded by default (since 18.3)
 - Asset bundle structure changes
 
+**New in 20.0 (per the [official 20.0 release notes](https://www.odoo.com/odoo-20-release-notes), Sep 2026):**
+- Platform minimums: Python 3.12+, PostgreSQL 16+ (`MIN_PY_VERSION = (3, 12)` in `odoo/release.py`); `pgvector` required for AI features
+- AI agents / agentic automation (plain-language process automation, IAP credits required, MCP database connection)
+- Mail tracking values removed (generated on the fly); Material Symbols replace Font Awesome; push notifications via in-house Odoo push tools
+
 ## Reference Skill
 
 The `.claude/skills/odoo/SKILL.md` file contains:
@@ -94,7 +100,7 @@ The `.claude/skills/odoo/SKILL.md` file contains:
 - Model/View development templates
 - Security setup patterns
 - Common code patterns (onchange, constraints, computed fields)
-- Migration notes from 18.0 to 19.0
+- Migration notes from 18.0 to 19.0 and 19.0 to 20.0
 
 This is automatically loaded when working on Odoo projects.
 

@@ -1,12 +1,12 @@
-# Odoo 19.0 Development Skill
+# Odoo 20.0 Development Skill
 
-A comprehensive Odoo 19.0 development reference for Claude Code, covering module development, debugging, API patterns, and best practices.
+A comprehensive Odoo 20.0 development reference for Claude Code, covering module development, debugging, API patterns, and best practices.
 
 ## Overview
 
-This skill provides Odoo 19.0 specific development guidance including:
+This skill provides Odoo 20.0 specific development guidance including:
 - OWL 2.0 frontend framework patterns
-- Python 3.10+ / PostgreSQL 13+ minimum requirements
+- Python 3.12+ / PostgreSQL 16+ minimum requirements
 - Verified field widgets and view patterns
 - Enhanced API patterns
 - Testing and debugging strategies
@@ -25,7 +25,7 @@ Key topics covered:
 - SEO meta fields (`website_meta_title`, `website_meta_description`, `website_meta_keywords`)
 - Known bug: `WebsiteBuilderClientAction.onIframeLoad` null body error and how to fix it
 
-## Odoo 19.0 Quick Reference
+## Odoo 20.0 Quick Reference
 
 ### Version Compatibility
 
@@ -36,11 +36,14 @@ Key topics covered:
 | 16.0 | 3.10 | 14 | No | Maintenance |
 | 17.0 | 3.10 | 14 | Yes | LTS until 2034-05 |
 | 18.0 | 3.10 | 12 | No | Stable |
-| **19.0** | **3.10+** | **13+** | **Yes** | **Latest LTS** |
+| 19.0 | 3.10+ | 13+ | Yes | LTS until 2036-05 |
+| **20.0** | **3.12+** | **16+** | **No** | **Latest (Sep 2026)** |
 
-> Verified against the [Install from source](https://www.odoo.com/documentation/19.0/administration/on_premise/source.html) page: "Odoo requires Python 3.10 or later" (minimum unchanged since 17.0) and "Changed in version 19: Minimum requirement updated from PostgreSQL 12 to PostgreSQL 13." These are the official *minimums* — production environments commonly run newer Python/PostgreSQL versions.
+> Verified against the [Install from source](https://www.odoo.com/documentation/20.0/administration/on_premise/source.html) page: "Changed in version 20: Minimum requirement updated from Python 3.10 to Python 3.12" and "Changed in version 20: Minimum requirement updated from PostgreSQL 13 to PostgreSQL 16." Local repo check: `odoo/release.py` in the 20.0 codebase has `MIN_PY_VERSION = (3, 12)` and `version_info = (20, 0, 0, FINAL, 0, '')`. Odoo AI features additionally require the `pgvector` extension (PostgreSQL 15+). These are the official *minimums* — production environments commonly run newer versions.
 
-### Odoo 19.0 Key Features (verified against the [official changelog](https://www.odoo.com/documentation/19.0/developer/reference/backend/orm/changelog.html))
+### Odoo 20.0 Key Features (verified against the [official 20.0 release notes](https://www.odoo.com/odoo-20-release-notes))
+
+Carried forward from 19.0 (per the [official changelog](https://www.odoo.com/documentation/20.0/developer/reference/backend/orm/changelog.html)):
 
 1. **OWL 2.0 Framework** - Frontend components use `@odoo/owl`, `static template`/`static props`, and hook-based lifecycle (`onWillStart`, `onMounted`, etc.)
 2. **Constraints/indexes as model attributes** - `models.Constraint(...)` / `models.Index(...)` (since 18.1) supersede `_sql_constraints`
@@ -49,6 +52,16 @@ Key topics covered:
 5. **`odoo.osv` deprecated, `record._cr`/`_context`/`_uid` deprecated** (19.0) - use `self.env.cr`, `self.env.context`, `self.env.uid`
 6. **Demo data no longer loaded by default** (since 18.3) - explicitly enable it when scaffolding demo data
 7. **`<chatter/>` tag** replaces the old `oe_chatter` div markup (since 18.0)
+
+New in 20.0 (per the [official 20.0 release notes](https://www.odoo.com/odoo-20-release-notes), Sep 2026):
+
+8. **AI agents / agentic automation** - automate any process in plain language; agents update themselves, can be summoned by automated/scheduled actions, show live handling in automation chats, create/update records, generate images, filter by time period. AI features require IAP credits; automatic model selection; MCP (Model Context Protocol) database connection for external AI tools with access rights intact; `pgvector` extension required.
+9. **Mail tracking values removed** - tracking message now generated on the fly; burndown charts, stage duration etc. updated for the new framework (dedicated module available for admins who still need tracking values).
+10. **Material Symbols replace Font Awesome** - update custom views/templates using `fa-*` icon classes.
+11. **Push notifications via in-house Odoo push tools** - no longer handled by Firebase.
+12. **Website AI + SEO** - AI page/snippet generation (even interactive snippets), AI SEO improvements, structured data added by default, adaptive image sizing (srcset), sitemaps limited to indexable 2XX URLs, translated static page URLs per language.
+13. **WhatsApp templates** - default recipients, interactive templates, named parameters, number blocking, simplified business-account authentication.
+14. **Accounting Firms industry pack** - identity-document + anti-money-laundering management, includes the Database app dashboard (available from 19.0).
 
 ## Module Development
 
@@ -86,7 +99,7 @@ module_name/
 # -*- coding: utf-8 -*-
 {
     'name': 'My Odoo Module',
-    'version': '19.0.1.0.0',
+    'version': '20.0.1.0.0',
     'category': 'Tools',
     'summary': 'Brief description',
     'description': """
@@ -265,7 +278,7 @@ class MainModel(models.Model):
 
 ## OWL 2.0 Frontend Development
 
-### Component Structure (Odoo 19.0)
+### Component Structure (Odoo 20.0)
 
 ```javascript
 import { Component, useState, onMounted, onWillStart } from "@odoo/owl";
@@ -378,7 +391,7 @@ registry.category("actions").add("module_name.my_component", MyComponent);
 
 ## View Development
 
-### Form View (Odoo 19.0)
+### Form View (Odoo 20.0)
 
 ```xml
 <record id="view_main_model_form" model="ir.ui.view">
@@ -426,7 +439,7 @@ registry.category("actions").add("module_name.my_component", MyComponent);
 </record>
 ```
 
-### Common Field Widgets (verified against 19.0 view architecture reference)
+### Common Field Widgets (verified against 20.0 view architecture reference)
 
 ```xml
 <!-- Tags -->
@@ -443,7 +456,7 @@ registry.category("actions").add("module_name.my_component", MyComponent);
 ```
 
 > **Note:** Widget names change frequently between versions. Always confirm a widget exists in the
-> [View Architectures reference](https://www.odoo.com/documentation/19.0/developer/reference/user_interface/view_architectures.html)
+> [View Architectures reference](https://www.odoo.com/documentation/20.0/developer/reference/user_interface/view_architectures.html)
 > before relying on it — don't assume a widget exists just because it sounds plausible.
 
 ## Security
@@ -639,7 +652,16 @@ const orm = owl.Component.current?.services?.orm;
 4. **Compute not updating**: Verify `@api.depends` includes all dependency fields
 5. **OWL component not rendering**: Check template name matches and bundle is loaded
 
-## Odoo 19.0 Migration Notes
+## Odoo 20.0 Migration Notes
+
+### From 19.0 to 20.0
+
+1. **Python 3.12+ required** - minimum raised from 3.10 (`MIN_PY_VERSION = (3, 12)` in `odoo/release.py` of the 20.0 codebase); update CI images and dev environments
+2. **PostgreSQL 16+ required** - minimum raised from 13; add the `pgvector` extension if you use Odoo AI features (needs PostgreSQL 15+)
+3. **Mail tracking values removed** - tracking message generated on the fly; update any custom code/reports reading `mail.tracking.value` (burndown charts, stage duration); install the dedicated tracking-values module if you still need the old records
+4. **Font Awesome → Material Symbols** - replace `fa-*` icon classes in custom views/templates
+5. **Push notifications** - now via in-house Odoo push tools, not Firebase; update any custom push integration
+6. **AI features need IAP credits** - budget/plan IAP credits for agentic automation, website AI, AI model selection
 
 ### From 18.0 to 19.0
 
@@ -726,7 +748,7 @@ def create(self, vals_list):
 <t t-out="record.html_content"/>  <!-- only safe if returned as Markup() -->
 ```
 
-### OCA 19.0 Specific Changes
+### OCA 20.0 Specific Changes
 
 ```python
 # Old
@@ -772,6 +794,6 @@ _name_idx = models.Index('(last_name, first_name)')
 
 ## References
 
-- [Odoo Documentation](https://www.odoo.com/documentation/19.0/)
-- [Odoo Developer Roadmap](https://www.odoo.com/documentation/19.0/developer.html)
+- [Odoo Documentation](https://www.odoo.com/documentation/20.0/)
+- [Odoo Developer Roadmap](https://www.odoo.com/documentation/20.0/developer.html)
 - [OWL Documentation](https://github.com/odoo/owl/tree/master/doc)

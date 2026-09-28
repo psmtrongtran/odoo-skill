@@ -5,7 +5,7 @@
 **Module Name:** {{MODULE_NAME}}
 **Technology Stack:** Python {{PYTHON_VERSION}} + Odoo {{ODOO_VERSION}}
 **Database:** PostgreSQL {{POSTGRESQL_VERSION}}
-**Frontend Framework:** OWL 2.0 (Odoo 19.0)
+**Frontend Framework:** OWL 2.0 (Odoo 20.0)
 **Architecture Pattern:** MVC (Model-View-Controller)
 
 ## Steering Documents Alignment
@@ -110,7 +110,7 @@ graph TB
 - **Frontend Components**: Use `static/src/components/` structure to organize JS/XML/SCSS files
 - **View Files**: Name by functionality or model name for better maintainability
 
-## Odoo 19.0 Frontend Components (OWL 2.0)
+## Odoo 20.0 Frontend Components (OWL 2.0)
 
 ### OWL 2.0 Component Structure
 ```javascript
@@ -235,9 +235,9 @@ class MyModel(models.Model):
         sanitize=True,
     )
 ```
-> Always confirm a widget name against the [View Architectures reference](https://www.odoo.com/documentation/19.0/developer/reference/user_interface/view_architectures.html) before using it — don't invent widget names.
+> Always confirm a widget name against the [View Architectures reference](https://www.odoo.com/documentation/20.0/developer/reference/user_interface/view_architectures.html) before using it — don't invent widget names.
 
-### Asset Bundle Configuration (Odoo 19.0)
+### Asset Bundle Configuration (Odoo 20.0)
 ```xml
 <odoo>
     <template id="assets" inherit_id="web.assets_frontend">
@@ -387,7 +387,7 @@ class LineModel(models.Model):
 
 ## User Interface Design
 
-### Form View Structure (Odoo 19.0)
+### Form View Structure (Odoo 20.0)
 ```xml
 <record id="view_main_model_form" model="ir.ui.view">
     <field name="name">main.model.form</field>
@@ -453,7 +453,7 @@ class LineModel(models.Model):
 </record>
 ```
 
-### Common Field Widgets (verified against the 19.0 View Architectures reference)
+### Common Field Widgets (verified against the 20.0 View Architectures reference)
 ```xml
 <!-- Rich HTML content -->
 <field name="rich_description" widget="html"/>
@@ -464,7 +464,7 @@ class LineModel(models.Model):
 <!-- Tags -->
 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
 ```
-> Confirm a widget exists in the [View Architectures reference](https://www.odoo.com/documentation/19.0/developer/reference/user_interface/view_architectures.html) before using it.
+> Confirm a widget exists in the [View Architectures reference](https://www.odoo.com/documentation/20.0/developer/reference/user_interface/view_architectures.html) before using it.
 
 ### List View Structure
 ```xml
